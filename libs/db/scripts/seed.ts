@@ -37,6 +37,8 @@ async function main() {
       growthScore: 5,
       createdById: user.id,
       organizationId: org.id,
+      visibility: null,
+      published: true,
     },
   });
 

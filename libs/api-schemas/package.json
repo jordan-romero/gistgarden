@@ -1,12 +1,12 @@
 {
-  "name": "@gist-garden/db",
+  "name": "@gist-garden/api-schemas",
   "version": "0.0.1",
   "private": true,
   "type": "commonjs",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "@prisma/client": "^6.11.1",
+    "zod": "^3.25.74",
     "tslib": "^2.3.0"
   }
 }

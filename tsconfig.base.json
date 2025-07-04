@@ -10,8 +10,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
     "paths": {
-      "@gist-garden/db": ["db/src/index.ts"]
+      "@gist-garden/api-schemas": ["libs/api-schemas/src/index.ts"],
+      "@gist-garden/db": ["libs/db/src/index.ts"]
     }
   }
 }
