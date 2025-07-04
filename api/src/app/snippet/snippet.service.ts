@@ -1,5 +1,5 @@
 import { db } from '@gist-garden/db';
-import { createSnippetSchema, CreateSnippetInput } from '@gist-garden/api-schemas';
+import { createSnippetSchema, CreateSnippetInput, CreateSnippetServiceInput } from '@gist-garden/api-schemas';
 
 export class SnippetService {
   async getAll() {
@@ -10,7 +10,7 @@ export class SnippetService {
     return db.snippet.findUnique({ where: { id } });
   }
 
-  async create(data: CreateSnippetInput) {
+  async create(data: CreateSnippetServiceInput) {
     // TODO: Replace with actual org/user context
     return db.snippet.create({
       data: {
@@ -21,7 +21,7 @@ export class SnippetService {
     });
   }
 
-  async update(id: string, data: Partial<CreateSnippetInput>) {
+  async update(id: string, data: Partial<CreateSnippetServiceInput>) {
     return db.snippet.update({ where: { id }, data });
   }
 

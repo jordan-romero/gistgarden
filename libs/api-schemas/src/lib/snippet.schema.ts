@@ -12,3 +12,5 @@ export const createSnippetSchema = z.object({
   });
 
 export type CreateSnippetInput = z.infer<typeof createSnippetSchema>;
+
+export type CreateSnippetServiceInput = Omit<CreateSnippetInput, 'organizationId' | 'createdById'>;
