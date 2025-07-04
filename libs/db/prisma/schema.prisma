@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  users     User[]
+  snippets  Snippet[]
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String
+  role           Role
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  snippets       Snippet[]
+  createdAt      DateTime @default(now())
+}
+
+model Snippet {
+  id             String   @id @default(cuid())
+  title          String
+  code           String
+  language       String
+  tags           String[]
+  growthScore    Int      @default(0)
+  parentId       String?  
+  parent         Snippet? @relation("SnippetFork", fields: [parentId], references: [id])
+  forks          Snippet[] @relation("SnippetFork")
+  createdBy      User     @relation(fields: [createdById], references: [id])
+  createdById    String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
